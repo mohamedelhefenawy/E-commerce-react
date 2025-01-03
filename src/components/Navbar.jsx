@@ -64,8 +64,8 @@ const navigate = useNavigate()
 <List size={35}  className='cursor-pointer text-gray-700 sm:hidden flex hover:text-black ease duration-300' onClick={()=>setVisible(true)} />
 
 <Link to='/cart' className='relative' >
-<Bag size={35}  className='cursor-pointer text-gray-700 sm:flex hidden hover:text-black ease duration-300'  />
-<p className='absolute cursor-pointer bg-red-200 w-6 h-6 text-gray-700  rounded-2xl top-[28px] left-[-5px] text-center  hover:bg-red-400 hover:text-black ease duration-300 sm:block hidden'>{get_count()}</p>
+<Bag size={35}  className='cursor-pointer text-gray-700 sm:flex  hover:text-black ease duration-300'  />
+<p className='absolute cursor-pointer bg-red-200 w-6 h-6 text-gray-700  rounded-2xl top-[28px] left-[-5px] text-center  hover:bg-red-400 hover:text-black ease duration-300 '>{get_count()}</p>
 </Link >
 
 </div>

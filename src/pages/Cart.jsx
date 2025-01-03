@@ -49,7 +49,7 @@ export default function Cart() {
               <p className="border rounded bg-gray-200 w-fit p-2">{items.size}</p>
               </div>
               </div>
-              <input type="number" onChange={(e)=>updated_quantity(items.id ,items.size , Number(e.target.value))} defaultValue={items.quantity} className="h-fit self-center w-[80px] " />
+              <input type="number" onChange={(e)=>updated_quantity(items.id ,items.size , Number(e.target.value))} defaultValue={items.quantity} min={1} className="h-fit self-center w-[80px] " />
               <img src={del} onClick={()=>updated_quantity(items.id , items.size ,0)} alt="" className="w-5 h-5 self-center cursor-pointer"/>
 
             </div>

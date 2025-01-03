@@ -11,6 +11,8 @@ export default function ShopContextProvider(props) {
     if(!size){
       toast.error('Select Product Size')
       return;
+    }else{
+      toast.success('Added To The Cart Succefully!')
     }
 
     let cartdata = structuredClone(cartitems)
@@ -78,9 +80,7 @@ export default function ShopContextProvider(props) {
     const fees = 10
     const value = {products,currency,fees , cartitems , addtocart ,get_count ,updated_quantity ,get_total_amount}
 
-    useEffect(()=>{
-      console.log(cartitems)
-    },[cartitems])
+ 
 
    
   return (
