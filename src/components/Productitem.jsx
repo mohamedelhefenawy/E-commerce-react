@@ -1,20 +1,27 @@
-import  { useContext } from 'react'
+import  { useContext ,useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ShopContext } from '../context/Shopcontext'
+import { Heart } from 'phosphor-react'
 
 export default function Productitem({id , image , price , name}) {
     
     const currency = useContext(ShopContext)
+    const [click , setClick]=useState(false)
     
   return (
-    <div>
-      <Link className='text-gray-700 cursor-pointer' to = {`/product/${id}`}>
-      <div className='overflow-hidden'>
-            <img src= {image[0]} alt=""  className='hover:scale-110 transition ease-in-out'/>
+    <div className='text-gray-700 '>
+      
+      <div className='overflow-hidden relative'>
+      <Link  to = {`/product/${id}`}>
+            <img src= {image[0]} alt=""  className='hover:scale-110 transition ease-in-out cursor-pointer'/>
+            </Link>
+            <Heart size={24} weight="fill" className ={`absolute top-2 right-1 cursor-pointer ${click ?'text-red-400' : ''}`} onClick={()=>setClick(!click)} />
+
+
       </div>
       <p className='pt-3 pb-1 text-sm'>{name}</p>
       <p className='text-sm font-medium'>{currency.currency} {price}</p>
-      </Link>
+      
     </div>
   )
 }
