@@ -1,6 +1,6 @@
-import  { useContext, useState } from 'react'
+import  { useContext, useEffect, useState } from 'react'
 import logo from '../assets/admin_assets/logo.png'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { ArrowLeft, Bag, List, MagnifyingGlass, User, X } from 'phosphor-react';
 import { ShopContext } from '../context/Shopcontext';
 
@@ -11,8 +11,17 @@ const [visible , setVisible] = useState(false)
 const {products,get_count,currency} = useContext(ShopContext)
 const [value,setValue]=useState('')
 const [items,setItems ]=useState([])
-console.log(products)
+const location = useLocation()
+// console.log(location)
+// console.log(products)
 const navigate = useNavigate()
+
+useEffect(()=>{
+setSearch(false);
+setVisible(false);
+setUser(false);
+}
+,[location])
 
 const handle_search =(query="")=>{
   event.preventDefault()
@@ -56,37 +65,59 @@ const handle_search =(query="")=>{
 
     <div className='relative'>
   <MagnifyingGlass size={35}  className='cursor-pointer text-gray-700 hover:text-black ease duration-300' onClick={()=>{(setSearch(!search));setUser(false)}}/>
-  {search&&
-  <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50'>
-    <div className='bg-white relative w-[80%] md:w-[60%] h-[60%] md:h-[40%] border rounded flex flex-col items-center '>
-    <X size={32}  className='absolute top-5 left-5 cursor-pointer hover:text-red-400 ease duration-300' onClick={()=>setSearch(false)}/>
-    <input type="text" placeholder='Search' value={value} onChange={(e)=>{setValue(e.target.value);handle_search(e.target.value)}} className='py-2 border border-gray-600 outline-none rounded px-6 w-[80%] mx-auto mt-16'/>
-    {
-  value.length > 0 && (
-    <div className="w-[80%]  overflow-auto">
-      {items.length>0?
-      (items.map((item, index) => (
-     <Link to={`/product/${item._id}` } onClick={()=>{setSearch(false);setValue('')}}>
-        <div key={index} className="flex py-4 px-2 justify-between cursor-pointer flex-col md:flex-row gap-2 hover:bg-red-400 duration-300 ease rounded md:gap-0">
-          <img src={item.image[0]} className="w-[40px] h-[40px]" alt="" />
-          
-          <p>{item.name}</p>
-          <p>{item.price}{currency}</p>
-          
+  {search && (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="bg-white relative w-[80%] md:w-[60%] h-[60%] md:h-[40%] border rounded flex flex-col items-center">
+      <X
+        size={32}
+        className="absolute top-5 left-5 cursor-pointer hover:text-red-400 ease duration-300"
+        onClick={() => setSearch(false)}
+      />
+      <input
+        type="text"
+        placeholder="Search"
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+          handle_search(e.target.value);
+        }}
+        className="py-2 border border-gray-600 outline-none rounded px-6 w-[80%] mx-auto mt-16"
+      />
+      {value.length > 0 && (
+        <div className="w-[80%] overflow-auto">
+          {items.length > 0 ? (
+            items.map((item) => (
+              <Link
+                key={item._id} // Use `item._id` as a unique key if available
+                to={`/product/${item._id}`}
+                onClick={() => {
+                  setSearch(false);
+                  setValue("");
+                }}
+              >
+                <div className="flex py-4 px-2 justify-between cursor-pointer flex-col md:flex-row gap-2 hover:bg-red-400 duration-300 ease rounded md:gap-0">
+                  <img
+                    src={item.image[0]}
+                    className="w-[40px] h-[40px]"
+                    alt=""
+                  />
+                  <p>{item.name}</p>
+                  <p>
+                    {item.price}
+                    {currency}
+                  </p>
+                </div>
+              </Link>
+            ))
+          ) : (
+            <p className="text-gray-600 text-2xl">No Results</p>
+          )}
         </div>
-        </Link>
-      ))):(<p className='text-gray-600 text-2xl '>
-        No Results
-      </p>)}
+      )}
     </div>
-  )
-}
+  </div>
+)}
 
-
-
-    </div>
-    
-    </div>}
   </div>
 
 
