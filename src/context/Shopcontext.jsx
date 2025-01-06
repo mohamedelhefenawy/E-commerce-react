@@ -6,6 +6,7 @@ export const ShopContext  = createContext()
 
 export default function ShopContextProvider(props) {
   const [cartitems , setCartItems] = useState({})
+  const [count , setCount] = useState()
 
   const addtocart =async (itemId , size)=>{
     if(!size){
@@ -55,6 +56,23 @@ export default function ShopContextProvider(props) {
     setCartItems(cartdata)
 
   }
+  const increase_quantity = (itemId, size) => {
+    let cartdata = structuredClone(cartitems);
+    
+    if (cartdata[itemId] && cartdata[itemId][size]) {
+      cartdata[itemId][size] += 1; // Increment quantity
+      setCartItems(cartdata); // Update state
+    }
+  };
+  
+  const decrease_quantity = (itemId, size) => {
+    let cartdata = structuredClone(cartitems);
+  
+    if (cartdata[itemId] && cartdata[itemId][size]) {
+      cartdata[itemId][size] = Math.max(1, cartdata[itemId][size] - 1); // Ensure quantity doesn't go below 1
+      setCartItems(cartdata); // Update state
+    }
+  };
 
   const get_total_amount =()=>{
     let amount = 0;
@@ -78,7 +96,7 @@ export default function ShopContextProvider(props) {
 
     const currency = '$'
     const fees = 10
-    const value = {products,currency,fees , cartitems , addtocart ,get_count ,updated_quantity ,get_total_amount}
+    const value = {products,currency,fees , cartitems , addtocart ,get_count ,updated_quantity ,increase_quantity , decrease_quantity ,get_total_amount}
 
  
 

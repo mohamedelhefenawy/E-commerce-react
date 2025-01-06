@@ -37,7 +37,7 @@ export default function Cart() {
       <div>
         {cartdata.map((items,index)=>{
           const product = products.find(item=> item._id === items.id  ) 
-          console.log(product)
+          
           return(
             <div key={index} className="flex justify-between ">
               <div className="flex gap-2 border-b py-2 mb-5">

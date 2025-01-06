@@ -11,6 +11,9 @@ import About from "./pages/About"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 import { ToastContainer, toast } from "react-toastify";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
 import "react-toastify/dist/ReactToastify.css";
 export default function App() {
   return (

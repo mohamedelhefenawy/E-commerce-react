@@ -19,6 +19,13 @@ export default function Contact() {
         </div>
       </div>
       
+      <form  className=' md:w-[60%] mx-auto flex flex-col gap-2'>
+        <input type="text" placeholder='Name' required className='px-2 py-4 border-gray-600 border-2 rounded '/>
+        <input type="email" placeholder='E-mail' required className='px-2 py-4  border-gray-600 border-2 rounded' />
+        <input type="text" placeholder='Phone' required className='px-2 py-4  border-gray-600 border-2 rounded' />
+        <textarea name="" id="" placeholder='Text Your Comment...' required className=' px-2 py-4 rounded border-gray-600 border-2'></textarea>
+        <button type='submit' className='mt-5 border border-black  px-8 py-4 rounded text-sm hover:bg-black hover:text-white duration-300 ease'>Send</button>
+      </form>
     </div>
   )
 }

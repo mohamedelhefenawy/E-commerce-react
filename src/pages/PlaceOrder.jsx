@@ -3,10 +3,12 @@ import Title from '../components/Title'
 import Carttotal from '../components/Carttotal'
 import stripe from '../assets/frontend_assets/stripe_logo.png'
 import raz from '../assets/frontend_assets/razorpay_logo.png'
+import vodafone from '../assets/frontend_assets/download.png'
+import instapay from '../assets/frontend_assets/download (2).png'
 
 
 export default function PlaceOrder() {
-  const [method ,setMethod]= useState('raz')
+  const [method ,setMethod]= useState('vodafone')
 
   
   return (
@@ -47,16 +49,16 @@ export default function PlaceOrder() {
           </div>
 
           <div className='flex gap-3 items-center  '>
-           <div className='px-4 py-2 border cursor-pointer flex gap-2 items-center' onClick={()=>setMethod('stripe')}> 
-           <p className={`min-w-3.5 h-3.5 rounded-full ${method==='stripe'? 'bg-green-500':''}`}></p>
+           <div className='px-4 py-2 rounded border cursor-pointer flex gap-2 items-center' onClick={()=>setMethod('vodafone')}> 
+           <p className={`min-w-3.5 h-3.5 rounded-full ${method==='vodafone'? 'bg-green-500':''}`}></p>
 
-          <img src= {stripe} alt=""  className='  h-5  '/>
+          <img src= {vodafone} alt=""  className=' w-[50px] h-[30px]  '/>
           </div>
-          <div className='px-4 py-2 border cursor-pointer flex gap-2 items-center' onClick={()=>setMethod('raz')}>
-          <p className={`min-w-3.5 h-3.5 rounded-full ${method==='raz'? 'bg-green-500':''}`}></p>
-          <img src= {raz} alt=""  className='  h-5 '/>
+          <div className='px-4 py-2  rounded border cursor-pointer flex gap-2 items-center' onClick={()=>setMethod('instapay')}>
+          <p className={`min-w-3.5 h-3.5 rounded-full ${method==='instapay'? 'bg-green-500':''}`}></p>
+          <img src= {instapay} alt=""  className='  w-[50px] h-[30px] '/>
           </div>
-          <div className='flex  border text-gray-600 cursor-pointer px-4 py-2 gap-2 items-center' onClick={()=>setMethod('cash')}>
+          <div className='flex rounded   border text-gray-600 cursor-pointer px-4 py-2 gap-2 items-center' onClick={()=>setMethod('cash')}>
           <p className={`min-w-3.5 h-3.5 rounded-full ${method==='cash'? 'bg-green-500':''}`}></p>
           <p className=' text-xs font-semibold '>Cash ON Delivery</p>
           </div>

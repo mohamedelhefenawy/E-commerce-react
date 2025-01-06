@@ -3,15 +3,21 @@ import logo from '../assets/admin_assets/logo.png'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { ArrowLeft, Bag, List, MagnifyingGlass, User, X } from 'phosphor-react';
 import { ShopContext } from '../context/Shopcontext';
+import Carttotal from './Carttotal';
+import del from '../assets/frontend_assets/bin_icon.png'
+
 
 export default function Navbar() {
 const [user ,setUser] = useState(false)
 const [search , setSearch] = useState(false)
 const [visible , setVisible] = useState(false)
-const {products,get_count,currency} = useContext(ShopContext)
+const {products,get_count,currency, cartitems,updated_quantity ,get_total_amount ,increase_quantity , decrease_quantity} = useContext(ShopContext)
 const [value,setValue]=useState('')
 const [items,setItems ]=useState([])
 const location = useLocation()
+const [cart , setCart] = useState(false)
+const [cartdata,setCartData] = useState([])
+const [count ,setCount] = useState()
 // console.log(location)
 // console.log(products)
 const navigate = useNavigate()
@@ -20,6 +26,7 @@ useEffect(()=>{
 setSearch(false);
 setVisible(false);
 setUser(false);
+setCart(false)
 }
 ,[location])
 
@@ -31,6 +38,34 @@ const handle_search =(query="")=>{
 }
 
 // console.log(products)
+
+
+
+
+
+useEffect(()=>{
+  const tempData= [];
+  for (const items in cartitems){
+    for(const item in cartitems[items]){
+      if(cartitems[items][item]>0){
+        tempData.push(
+          {
+            id:items,
+            size:item,
+            quantity:cartitems[items][item]
+          }
+        )
+      }
+    }
+  }
+  setCartData(tempData)
+
+},[cartitems])
+
+
+
+
+
 
   return (
     <div className=' flex items-center justify-between py-5 mx-2 sm:mx-10 font-medium'>
@@ -135,17 +170,73 @@ const handle_search =(query="")=>{
 
 <List size={35}  className='cursor-pointer text-gray-700 sm:hidden flex hover:text-black ease duration-300' onClick={()=>setVisible(true)} />
 
-<Link to='/cart' className='relative' >
-<Bag size={35}  className='cursor-pointer text-gray-700 sm:flex  hover:text-black ease duration-300'  />
+<div className='relative'>
+<Bag size={35}  onClick={()=>setCart(true)} className=' cursor-pointer text-gray-700 sm:flex  hover:text-black ease duration-300'  />
 <p className='absolute cursor-pointer bg-red-200 w-6 h-6 text-gray-700  rounded-2xl top-[28px] left-[-5px] text-center  hover:bg-red-400 hover:text-black ease duration-300 '>{get_count()}</p>
-</Link >
+</div>
+
 
 </div>
+
+{/* Cart Side */}
+<div className={`fixed z-[99] top-0 right-0 bottom-0 bg-gray-100 overflow-auto transition-all ${cart ? 'w-full md:w-[60%] lg:w-[50%]' : 'w-0'}`}>
+  <X size={32} className='absolute top-3 left-3 text-gray-600 cursor-pointer hover:text-black duration-300 ease' onClick={() => setCart(false)} />
+
+  <div className='flex flex-col h-full justify-between'>
+    <div className='flex-1 max-h-screen overflow-y-auto'>
+      {cartdata.map((items, index) => {
+        const product = products.find(item => item._id === items.id);
+        
+        return (
+          <div key={index} className="flex md:flex-row flex-col justify-between my-2 w-[80%] mx-auto mt-10 hover:bg-red-400 duration-300 ease py-2 px-4 rounded">
+            <div className="flex gap-2 border-b py-2 mb-5">
+              <img src={product.image[0]} alt="" className="w-20" />
+              <div className="flex flex-col gap-1">
+                <h3 className="text-sm text-gray-600">{product.name}</h3>
+                <p>{product.price}{currency}</p>
+                <p className="border rounded bg-gray-200 w-fit p-2">{items.size}</p>
+              </div>
+            </div>
+
+            <div className='flex gap-10'>
+            <div className='flex gap-0 items-center justify-center'>
+              <button className='bg-gray-400 px-2 ' onClick={()=>{updated_quantity(items.id, items.size, items.quantity + 1)}}>+</button>
+            <input type="text" 
+            id='change'
+            onChange={(e)=>updated_quantity(items.id ,items.size , Number(e.target.value))} 
+            value={items.quantity} 
+            min={1} 
+            className="h-fit self-center w-[80px] text-center " />
+            <button className='bg-gray-400 px-2  ' onClick={()=>{if(items.quantity>1){updated_quantity(items.id , items.size , items.quantity-1)}}}>-</button>
+</div>
+              
+
+              <img
+                src={del}
+                onClick={() => updated_quantity(items.id, items.size, 0)}
+                alt=""
+                className="w-5 h-5 self-center cursor-pointer"
+              />
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <div className='w-[80%] mx-auto mt-auto'>
+      <button onClick={()=>navigate('/place-order')} className='mb-3 w-full bg-red-400 rounded py-4 text-gray-800 hover:text-black duration-300 ease'>
+        Go To CheckOut | {currency}{get_total_amount()}
+      </button>
+    </div>
+  </div>
+</div>
+
+
 
 
 {/* small screen */}
 
-<div className={`absolute top-0 right-0 bottom-0 bg-white overflow-hidden transition-all  ${visible? 'w-full max-h-screen' :'w-0' } `} >
+<div className={`fixed z-[99] top-0 right-0 bottom-0 bg-white overflow-hidden transition-all  ${visible? 'w-full max-h-screen' :'w-0' } `} >
 
 
 <div className='flex gap-3 cursor-pointer mt-5 ml-2 ' onClick={()=> setVisible(false)}>

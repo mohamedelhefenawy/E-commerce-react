@@ -4,6 +4,7 @@ import { ShopContext } from '../context/Shopcontext';
 import star from '../assets/frontend_assets/star_icon.png';
 import non_star from '../assets/frontend_assets/star_dull_icon.png';
 import Relatedproduct from '../components/Relatedproduct';
+import { Heart } from 'phosphor-react';
 
 export default function Product() {
   const { id } = useParams();
@@ -12,6 +13,7 @@ export default function Product() {
   const [image, setImage] = useState('');
   const [size ,setSize] = useState('')
   const [describe ,setDescribe] = useState(false)
+  const [click , setClick]=useState(false)
 
   const fetch_Data = async () => {
     
@@ -59,14 +61,18 @@ export default function Product() {
                 ))}
               <img src={non_star} alt="" className="w-4" />
             </div>
+            
             <p className="ml-2 font-medium">(122)</p>
           </div>
-
+          
+         
+    
           <p className="font-semibold text-2xl">
             {products.currency}
             {productData.price}
           </p>
           <p className="text-gray-600 w-3/4 text-sm">{productData.description}</p>
+          <Heart size={24} weight="fill" className ={` cursor-pointer ${click ?'text-red-400' : ''}`} onClick={()=>setClick(!click)} />
           <div className='flex-col gap-3'>    
           <p  className='font-semibold'>Select Size</p>
           <div className='flex gap-2 '>
@@ -89,11 +95,20 @@ export default function Product() {
           <button className={`border rounded ${describe?'text-black':'text-gray-600'} px-5 py-3 text-sm`} onClick={()=>setDescribe(true)}>Description</button>
           <button className={`border rounded ${describe ? 'text-gray-600' :'text-black'} px-5 py-3 text-sm`} onClick={()=>setDescribe(false)}>Reviews (122)</button>
         </div>
+ 
+        
         <div className='mt-10'>
           {describe?(<p className='text-gray-600 text-sm '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, quidem error perferendis enim magnam vero delectus iusto nesciunt quod magni totam aperiam, iste adipisci eaque reprehenderit alias aut, inventore unde!</p>):
           (<p className='text-gray-600 text-sm '>This Product is very good and it is made from cotton 100%</p>)}
         </div>
       </div>
+
+      {!describe&&
+        <form className='my-5 flex flex-col gap-3'>
+        <textarea name="" id="" placeholder='Input Your Review' className=' px-2 py-4 rounded border-gray-600 border-2'></textarea>
+        <button type='submit'  className=' w-[100px]  border border-black  px-8 py-4 rounded text-sm hover:bg-black hover:text-white duration-300 ease'>Send</button>
+        </form>
+        }
 
       {/* Related Products */}
 
