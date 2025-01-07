@@ -179,43 +179,84 @@ useEffect(()=>{
 </div>
 
 {/* Cart Side */}
-<div className={`fixed z-[99] top-0 right-0 bottom-0 bg-gray-100 overflow-auto transition-all ${cart ? 'w-full md:w-[60%] lg:w-[50%]' : 'w-0'}`}>
-  <X size={32} className='absolute top-3 left-3 text-gray-600 cursor-pointer hover:text-black duration-300 ease' onClick={() => setCart(false)} />
+<div
+  className={`fixed z-[99] top-0 right-0 bottom-0 bg-gray-100 overflow-auto transition-all duration-300 ease-in-out ${
+    cart ? 'w-full md:w-[60%] lg:w-[50%] p-6' : 'w-0'
+  }`}
+>
+  {/* Close Button */}
+  <X
+    size={32}
+    className="absolute top-4 left-4 text-gray-600 cursor-pointer hover:text-black transition-colors duration-300 ease"
+    onClick={() => setCart(false)}
+    title="Close Cart"
+  />
 
-  <div className='flex flex-col h-full justify-between'>
-    <div className='flex-1 max-h-screen overflow-y-auto'>
+  {/* Cart Content */}
+  <div className="flex flex-col h-full  justify-between">
+    {/* Cart Items */}
+    <div className="flex-1 max-h-screen overflow-y-auto space-y-6">
       {cartdata.map((items, index) => {
-        const product = products.find(item => item._id === items.id);
-        
+        const product = products.find((item) => item._id === items.id);
+
         return (
-          <div key={index} className="flex md:flex-row flex-col justify-between my-2 w-[80%] mx-auto mt-10 hover:bg-red-400 duration-300 ease py-2 px-4 rounded">
-            <div className="flex gap-2 border-b py-2 mb-5">
-              <img src={product.image[0]} alt="" className="w-20" />
+          <div
+            key={index}
+            className="flex flex-col md:flex-row mt-6 justify-between items-center bg-white shadow-md rounded-lg p-4 hover:bg-gray-200 transition duration-300 ease-in-out"
+          >
+            {/* Product Info */}
+            <div className="flex gap-4 items-center">
+              <img
+                src={product.image[0]}
+                alt={product.name}
+                className="w-20 h-20 object-cover rounded"
+              />
               <div className="flex flex-col gap-1">
-                <h3 className="text-sm text-gray-600">{product.name}</h3>
-                <p>{product.price}{currency}</p>
-                <p className="border rounded bg-gray-200 w-fit p-2">{items.size}</p>
+                <h3 className="text-sm font-medium text-gray-800">{product.name}</h3>
+                <p className="text-sm text-gray-600">{currency}{product.price}</p>
+                <p className="text-xs bg-gray-200 rounded py-1 px-2 w-fit text-gray-700">
+                  {items.size}
+                </p>
               </div>
             </div>
 
-            <div className='flex gap-10'>
-            <div className='flex gap-0 items-center justify-center'>
-              <button className='bg-gray-400 px-2 ' onClick={()=>{updated_quantity(items.id, items.size, items.quantity + 1)}}>+</button>
-            <input type="text" 
-            id='change'
-            onChange={(e)=>updated_quantity(items.id ,items.size , Number(e.target.value))} 
-            value={items.quantity} 
-            min={1} 
-            className="h-fit self-center w-[80px] text-center " />
-            <button className='bg-gray-400 px-2  ' onClick={()=>{if(items.quantity>1){updated_quantity(items.id , items.size , items.quantity-1)}}}>-</button>
-</div>
-              
+            {/* Quantity & Actions */}
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <button
+                  className="bg-gray-300 text-gray-800 px-2 py-1 rounded hover:bg-gray-400 transition"
+                  onClick={() => updated_quantity(items.id, items.size, items.quantity + 1)}
+                >
+                  +
+                </button>
+                <input
+                  type="text"
+                  readOnly
+                  value={items.quantity}
+                  min={1}
+                  onChange={(e) =>
+                    updated_quantity(items.id, items.size, Number(e.target.value))
+                  }
+                  className="w-12 text-center border border-gray-300 rounded"
+                />
+                <button
+                  className="bg-gray-300 text-gray-800 px-2 py-1 rounded hover:bg-gray-400 transition"
+                  onClick={() => {
+                    if (items.quantity > 1) {
+                      updated_quantity(items.id, items.size, items.quantity - 1);
+                    }
+                  }}
+                >
+                  -
+                </button>
+              </div>
 
               <img
                 src={del}
                 onClick={() => updated_quantity(items.id, items.size, 0)}
-                alt=""
-                className="w-5 h-5 self-center cursor-pointer"
+                alt="Delete item"
+                className="w-6 h-6 cursor-pointer hover:scale-110 transition"
+                title="Remove Item"
               />
             </div>
           </div>
@@ -223,13 +264,18 @@ useEffect(()=>{
       })}
     </div>
 
-    <div className='w-[80%] mx-auto mt-auto'>
-      <button onClick={()=>navigate('/place-order')} className='mb-3 w-full bg-red-400 rounded py-4 text-gray-800 hover:text-black duration-300 ease'>
-        Go To CheckOut | {currency}{get_total_amount()}
+    {/* Checkout Button */}
+    <div className="w-full mt-auto">
+      <button
+        onClick={() => navigate('/place-order')}
+        className="w-full bg-red-500 text-white rounded-lg py-4 font-semibold hover:bg-red-600 transition duration-300 ease"
+      >
+        Go To Checkout | {currency}{get_total_amount()}
       </button>
     </div>
   </div>
 </div>
+
 
 
 
