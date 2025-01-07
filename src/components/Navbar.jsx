@@ -3,7 +3,7 @@ import logo from '../assets/admin_assets/logo.png'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { ArrowLeft, Bag, List, MagnifyingGlass, User, X } from 'phosphor-react';
 import { ShopContext } from '../context/Shopcontext';
-import Carttotal from './Carttotal';
+// import Carttotal from './Carttotal';
 import del from '../assets/frontend_assets/bin_icon.png'
 
 
@@ -17,7 +17,7 @@ const [items,setItems ]=useState([])
 const location = useLocation()
 const [cart , setCart] = useState(false)
 const [cartdata,setCartData] = useState([])
-const [count ,setCount] = useState()
+// const [count ,setCount] = useState()
 // console.log(location)
 // console.log(products)
 const navigate = useNavigate()
@@ -161,9 +161,9 @@ useEffect(()=>{
   <div className='relative'>
   <User size={35}  className='cursor-pointer text-gray-700 hover:text-black ease duration-300' onClick={()=>{(setUser(!user));setSearch(false)}} />
  {user&&<div className='absolute bg-gray-400 text-white w-[100px] h-[120px] rounded text-center top-[40px] right-[5px] flex flex-col justify-evenly'>
-  <p className='cursor-pointer hover:text-gray-800 ease duration-300' onClick={()=>navigate('/login')}>Profile</p>
+  <p className='cursor-pointer hover:text-gray-800 ease duration-300' onClick={()=>navigate('/profile')}>Profile</p>
   <p className='cursor-pointer hover:text-gray-800 ease duration-300' onClick={()=>navigate('/order')}>Orders</p>
-  <p className='cursor-pointer hover:text-gray-800 ease duration-300'>Logout</p>
+  <p className='cursor-pointer hover:text-gray-800 ease duration-300' onClick={()=>navigate('/login')}>Logout</p>
  </div>}
  </div>
 

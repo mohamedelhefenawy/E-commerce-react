@@ -52,8 +52,9 @@ export default function Contact() {
   
     {/* Contact Form */}
     <form className="bg-white p-8 shadow-xl rounded-lg max-w-lg mx-auto">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Get in Touch</h2>
-  
+      <div className='text-center my-3' >
+<Title text1={'Get IN'} text2={'Touch'} />
+</div>
       {/* Name Field */}
       <input
         type="text"
