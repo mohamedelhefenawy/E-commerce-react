@@ -46,11 +46,11 @@ export default function Hero() {
 
       {/* Arrow left */}
 
-      <div className='absolute top-[45%] text-xl md:text-2xl left-3 cursor-pointer hover:text-red-400 duration-300 ease z-10'>
+      {/* <div className='absolute top-[45%] text-xl md:text-2xl left-3 cursor-pointer hover:text-red-400 duration-300 ease z-10'>
       <button onClick={()=>inputref.current.slickPrev()} >
       <ArrowCircleLeft   />
       </button>
-      </div>
+      </div> */}
 
 {/* Slider */}
     <Slider ref={inputref} {...settings} >
@@ -85,11 +85,11 @@ export default function Hero() {
     </Slider>
 
 {/* Arrow Right */}
-    <div className='absolute top-[45%] text-xl md:text-2xl  right-3 cursor-pointer hover:text-red-400 duration-300 ease z-10'>
+    {/* <div className='absolute top-[45%] text-xl md:text-2xl  right-3 cursor-pointer hover:text-red-400 duration-300 ease z-10'>
       <button onClick={()=>inputref.current.slickNext()} >
       <ArrowCircleRight    />
       </button>
-      </div>
+      </div> */}
     </div>
   )
 }

@@ -3,29 +3,97 @@ import Title from "../components/Title"
 
 export default function Contact() {
   return (
-    <div className='my-10 w-[80%] mx-auto'>
-      <div className='text-center text-2xl pt-10 border-t'>
-        <Title text1={'Contact'} text2={'US'}/>
-      </div>
-      <div className='my-10 flex flex-col md:flex-row justify-center  gap-10 mb-28'>
-        <img src={contact} className='w-full md:w-[480px]' alt="" />
-        <div className='flex flex-col justify-center items-start gap-6'>
-          <p className='font-semibold text-xl text-gray-600'>Our Store</p>
-          <p className='text-gray-500'>54709 willms station <br /> Suite 350 , Washington ,USA</p>
-          <p className='text-gray-500'>Tel: 01272808556 <br /> Email: melhefnawy718@gmail.com</p>
-          <p className='font-semibold text-xl text-gray-600'>Careers at Forever</p>
-          <p className='text-gray-500'>Learn more about our teams and job openings. </p>
-          <button className='border border-black  px-8 py-4 text-sm hover:bg-black hover:text-white duration-300 ease'>Explore Jobs</button>
-        </div>
-      </div>
-      
-      <form  className=' md:w-[60%] mx-auto flex flex-col gap-2'>
-        <input type="text" placeholder='Name' required className='px-2 py-4 border-gray-600 border-2 rounded '/>
-        <input type="email" placeholder='E-mail' required className='px-2 py-4  border-gray-600 border-2 rounded' />
-        <input type="text" placeholder='Phone' required className='px-2 py-4  border-gray-600 border-2 rounded' />
-        <textarea name="" id="" placeholder='Text Your Comment...' required className=' px-2 py-4 rounded border-gray-600 border-2'></textarea>
-        <button type='submit' className='mt-5 border border-black  px-8 py-4 rounded text-sm hover:bg-black hover:text-white duration-300 ease'>Send</button>
-      </form>
+    <div className="my-10 w-[90%] max-w-7xl mx-auto">
+    {/* Title Section */}
+    <div className="text-center text-3xl pt-10 border-t border-gray-200">
+      <Title text1="Contact" text2="US" />
     </div>
+  
+    {/* Contact Information */}
+    <div className="my-16 flex flex-col md:flex-row justify-center gap-16 items-center">
+      {/* Contact Image */}
+      <img
+        src={contact}
+        className="w-full max-w-[480px] rounded-lg shadow-lg"
+        alt="Contact Us"
+      />
+  
+      {/* Contact Details */}
+      <div className="flex flex-col justify-center items-start gap-6">
+        <div>
+          <p className="font-semibold text-2xl text-gray-800">Our Store</p>
+          <p className="text-gray-600 mt-2">
+            54709 Willms Station <br />
+            Suite 350, Washington, USA
+          </p>
+        </div>
+  
+        <div>
+          <p className="font-semibold text-xl text-gray-800">Contact Us</p>
+          <p className="text-gray-600 mt-2">
+            Tel: <a href="tel:01272808556" className="text-red-500">01272808556</a>
+            <br />
+            Email: <a href="mailto:melhefnawy718@gmail.com" className="text-red-500">melhefnawy718@gmail.com</a>
+          </p>
+        </div>
+  
+        <div>
+          <p className="font-semibold text-xl text-gray-800">Careers at Forever</p>
+          <p className="text-gray-600 mt-2">
+            Learn more about our teams and job openings.
+          </p>
+        </div>
+  
+        <button className="border border-black px-8 py-3 text-sm font-medium text-black rounded-lg hover:bg-black hover:text-white transition duration-300 ease-in-out">
+          Explore Jobs
+        </button>
+      </div>
+    </div>
+  
+    {/* Contact Form */}
+    <form className="bg-white p-8 shadow-xl rounded-lg max-w-lg mx-auto">
+      <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Get in Touch</h2>
+  
+      {/* Name Field */}
+      <input
+        type="text"
+        placeholder="Name"
+        required
+        className="px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent w-full mb-4"
+      />
+  
+      {/* Email Field */}
+      <input
+        type="email"
+        placeholder="E-mail"
+        required
+        className="px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent w-full mb-4"
+      />
+  
+      {/* Phone Field */}
+      <input
+        type="text"
+        placeholder="Phone"
+        required
+        className="px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent w-full mb-4"
+      />
+  
+      {/* Comment Field */}
+      <textarea
+        placeholder="Text Your Comment..."
+        required
+        className="px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent w-full mb-4 resize-none"
+      ></textarea>
+  
+      {/* Submit Button */}
+      <button
+        type="submit"
+        className="w-full px-6 py-3 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 transition duration-300 ease-in-out"
+      >
+        Send
+      </button>
+    </form>
+  </div>
+  
   )
 }

@@ -41,13 +41,13 @@ export default function Product() {
                 <img
                   src={item}
                   key={index}
-                  className="  w-[16vw] sx:w-[50vw] ms:w-[30vw]  cursor-pointer"
+                  className="  w-[16vw] sx:w-[50vw] ms:w-[30vw]  cursor-pointer object-cover cursor-pointer border border-gray-200 rounded-md hover:border-gray-500"
                   onClick={() => setImage(item)}
                 />
               ))}
           </div>
 
-          <img src={image} alt="" className="w-[70vw]" />
+          <img src={image} alt="" className="w-[70vw] object-cover rounded-lg shadow-lg" />
         </div>
 
         <div className="flex flex-col gap-5">
@@ -73,21 +73,41 @@ export default function Product() {
           </p>
           <p className="text-gray-600 w-3/4 text-sm">{productData.description}</p>
           <Heart size={24} weight="fill" className ={` cursor-pointer ${click ?'text-red-400' : ''}`} onClick={()=>setClick(!click)} />
-          <div className='flex-col gap-3'>    
-          <p  className='font-semibold'>Select Size</p>
-          <div className='flex gap-2 '>
-          {productData.sizes?.map((item,index)=>(<button key={index} onClick={()=>setSize(item)} className={`p-4 border-2 ${item===size ? 'border-black' :''}`} >{item}</button>))}
-          </div>
-          </div>
-          <button className='bg-black text-white px-5 py-4 min-w-[40px] max-w-[150px] rounded' onClick={()=>products.addtocart(productData._id,size)}>Add To Cart</button>
-          <hr className='mt-5'/>
-          <div className='text-gray-600 text-sm'>
-            <p>100% original product</p>
-            <p>cash on delievery is available in the product</p>
-            <p>easy return and exchange policy with 7 days</p>
-          </div>
+         {/* Select Size */}
+      <div className="flex flex-col gap-2">
+        <p className="font-semibold text-gray-800">Select Size</p>
+        <div className="flex gap-2">
+          {productData.sizes?.map((item, index) => (
+            <button
+              key={index}
+              onClick={() => setSize(item)}
+              className={`px-5 py-2 border-2 rounded-lg transition ${
+                item === size ? "border-black bg-gray-100" : "border-gray-300"
+              }`}
+            >
+              {item}
+            </button>
+          ))}
         </div>
       </div>
+
+      {/* add to cart */}
+      <button
+        onClick={() => products.addtocart(productData._id, size)}
+        className="bg-black text-white px-8 py-3 rounded-lg shadow "
+      >
+        Add To Cart
+      </button>
+
+      {/*  */}
+      <hr className="my-5 border-gray-300" />
+      <div className="text-gray-600 text-sm space-y-2">
+        <p>100% original product</p>
+        <p>Cash on delivery available</p>
+        <p>Easy return and exchange within 7 days</p>
+      </div>
+    </div>
+  </div>
 
       {/* Description and Reviews */}
       <div className='mt-20 '>
@@ -103,12 +123,22 @@ export default function Product() {
         </div>
       </div>
 
-      {!describe&&
-        <form className='my-5 flex flex-col gap-3'>
-        <textarea name="" id="" placeholder='Input Your Review' className=' px-2 py-4 rounded border-gray-600 border-2'></textarea>
-        <button type='submit'  className=' w-[100px]  border border-black  px-8 py-4 rounded text-sm hover:bg-black hover:text-white duration-300 ease'>Send</button>
-        </form>
-        }
+{/* Reviews form */}
+      {!describe && (
+    <form className="my-10 flex flex-col gap-4">
+      <textarea
+        placeholder="Input Your Review"
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent resize-none"
+      ></textarea>
+      <button
+        type="submit"
+        className="w-[100px] border border-black px-5 py-3 rounded-lg text-sm font-medium bg-black text-white"
+      >
+        Send
+      </button>
+    </form>
+  )}
+
 
       {/* Related Products */}
 
