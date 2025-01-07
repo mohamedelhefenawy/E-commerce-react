@@ -16,6 +16,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 import "react-toastify/dist/ReactToastify.css";
 import Profile from "./pages/Profile"
+import Wishlist from "./pages/Wishlist"
 export default function App() {
   return (
     <div>
@@ -32,6 +33,7 @@ export default function App() {
         <Route element ={<Login/>} path="/login"/>
         <Route element = {<About></About>} path="/about"/>
         <Route element = {<Profile/>} path="/profile"/>
+        <Route element ={<Wishlist/>} path="/wishlist"/>
       </Routes>
       <Footer/>
     </div>

@@ -14,6 +14,7 @@ export default function Product() {
   const [size ,setSize] = useState('')
   const [describe ,setDescribe] = useState(false)
   const [click , setClick]=useState(false)
+  console.log(products.click)
 
   const fetch_Data = async () => {
     
@@ -72,7 +73,7 @@ export default function Product() {
             {productData.price}
           </p>
           <p className="text-gray-600 w-3/4 text-sm">{productData.description}</p>
-          <Heart size={24} weight="fill" className ={` cursor-pointer ${click ?'text-red-400' : ''}`} onClick={()=>setClick(!click)} />
+          <Heart size={24} weight="fill" className ={` cursor-pointer ${products.click[productData._id]?'text-red-400' : ''}`} onClick={()=>{setClick(products.click[productData._id]);products.addtowishlist(productData._id)}} />
          {/* Select Size */}
       <div className="flex flex-col gap-2">
         <p className="font-semibold text-gray-800">Select Size</p>

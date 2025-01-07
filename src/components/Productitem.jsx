@@ -15,7 +15,7 @@ export default function Productitem({id , image , price , name}) {
       <Link  to = {`/product/${id}`}>
             <img src= {image[0]} alt=""  className='hover:scale-110 transition ease-in-out cursor-pointer'/>
             </Link>
-            <Heart size={24} weight="fill" className ={`absolute top-2 right-1 cursor-pointer ${click ?'text-red-400' : ''}`} onClick={()=>setClick(!click)} />
+            <Heart size={24} weight="fill"  className ={`absolute top-2 right-1 cursor-pointer ${currency.click[id] ?'text-red-400' : ''}`} onClick={()=>{setClick(currency[id]);currency.addtowishlist(id)}} />
 
 
       </div>

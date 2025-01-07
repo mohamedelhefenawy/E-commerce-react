@@ -6,7 +6,8 @@ export const ShopContext  = createContext()
 
 export default function ShopContextProvider(props) {
   const [cartitems , setCartItems] = useState({})
-  const [count , setCount] = useState()
+  const [wishlist , setWishList] = useState([])
+  const [click , setClick] = useState(false)
 
   const addtocart =async (itemId , size)=>{
     if(!size){
@@ -56,23 +57,7 @@ export default function ShopContextProvider(props) {
     setCartItems(cartdata)
 
   }
-  const increase_quantity = (itemId, size) => {
-    let cartdata = structuredClone(cartitems);
-    
-    if (cartdata[itemId] && cartdata[itemId][size]) {
-      cartdata[itemId][size] += 1; // Increment quantity
-      setCartItems(cartdata); // Update state
-    }
-  };
-  
-  const decrease_quantity = (itemId, size) => {
-    let cartdata = structuredClone(cartitems);
-  
-    if (cartdata[itemId] && cartdata[itemId][size]) {
-      cartdata[itemId][size] = Math.max(1, cartdata[itemId][size] - 1); // Ensure quantity doesn't go below 1
-      setCartItems(cartdata); // Update state
-    }
-  };
+
 
   const get_total_amount =()=>{
     let amount = 0;
@@ -94,9 +79,41 @@ export default function ShopContextProvider(props) {
     return amount
   }
 
+  // Wish List
+  const addtowishlist = (itemId) => {
+    const productToAdd = products.find((item) => item._id === itemId);
+  
+    if (!productToAdd) {
+      toast.error('Product not found!');
+      return;
+    }
+  
+    setWishList((prevWishlist) => {
+      const isAlreadyInWishlist = prevWishlist.some(
+        (product) => product._id === itemId
+      );
+      
+      if (!isAlreadyInWishlist) {
+        toast.success('Added to Wishlist Successfully!');
+        setClick((prevClick) => ({ ...prevClick, [itemId]:true })); // Set click state for this product
+        return [...prevWishlist, productToAdd];
+      } else {
+        toast.info('Removed from Wishlist!');
+        setClick((prevClick) => ({ ...prevClick, [itemId]: false })); // Reset click state for this product
+        return prevWishlist.filter((product)=>product._id !== itemId); // Remove from wishlist
+      }
+    });
+  };
+  
+  
+
+  
+  
+  
+
     const currency = '$'
     const fees = 10
-    const value = {products,currency,fees , cartitems , addtocart ,get_count ,updated_quantity ,increase_quantity , decrease_quantity ,get_total_amount}
+    const value = {products,currency,fees , cartitems , addtocart ,get_count ,updated_quantity,get_total_amount ,addtowishlist,wishlist ,click}
 
  
 

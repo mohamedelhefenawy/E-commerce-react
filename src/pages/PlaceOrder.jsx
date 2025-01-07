@@ -1,8 +1,6 @@
 import  { useState } from 'react'
 import Title from '../components/Title'
 import Carttotal from '../components/Carttotal'
-import stripe from '../assets/frontend_assets/stripe_logo.png'
-import raz from '../assets/frontend_assets/razorpay_logo.png'
 import vodafone from '../assets/frontend_assets/download.png'
 import instapay from '../assets/frontend_assets/download (2).png'
 

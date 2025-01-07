@@ -11,7 +11,7 @@ export default function Navbar() {
 const [user ,setUser] = useState(false)
 const [search , setSearch] = useState(false)
 const [visible , setVisible] = useState(false)
-const {products,get_count,currency, cartitems,updated_quantity ,get_total_amount ,increase_quantity , decrease_quantity} = useContext(ShopContext)
+const {products,get_count,currency, cartitems,updated_quantity ,get_total_amount } = useContext(ShopContext)
 const [value,setValue]=useState('')
 const [items,setItems ]=useState([])
 const location = useLocation()
@@ -84,6 +84,11 @@ useEffect(()=>{
 
         <NavLink to='/about' className= 'flex flex-col items-center gap-1'>
         <p>About</p>
+        <hr className='w-2/4 font-bold bg-gray-700 h-[2px] hidden' />
+        </NavLink>
+
+        <NavLink to='/wishlist' className= 'flex flex-col items-center gap-1'>
+        <p>Wishlist</p>
         <hr className='w-2/4 font-bold bg-gray-700 h-[2px] hidden' />
         </NavLink>
 
@@ -160,7 +165,7 @@ useEffect(()=>{
 
   <div className='relative'>
   <User size={35}  className='cursor-pointer text-gray-700 hover:text-black ease duration-300' onClick={()=>{(setUser(!user));setSearch(false)}} />
- {user&&<div className='absolute bg-gray-400 text-white w-[100px] h-[120px] rounded text-center top-[40px] right-[5px] flex flex-col justify-evenly'>
+ {user&&<div className='z-[99] absolute bg-gray-400 text-white w-[100px] h-[120px] rounded text-center top-[40px] right-[5px] flex flex-col justify-evenly'>
   <p className='cursor-pointer hover:text-gray-800 ease duration-300' onClick={()=>navigate('/profile')}>Profile</p>
   <p className='cursor-pointer hover:text-gray-800 ease duration-300' onClick={()=>navigate('/order')}>Orders</p>
   <p className='cursor-pointer hover:text-gray-800 ease duration-300' onClick={()=>navigate('/login')}>Logout</p>
@@ -303,6 +308,10 @@ useEffect(()=>{
 
         <NavLink onClick={()=> setVisible(false)} to='/about' className= 'py-2 pl-6 border-b-2 w-full'>
         About
+        </NavLink>
+
+        <NavLink onClick={()=> setVisible(false)} to='/wishlist' className= 'py-2 pl-6 border-b-2 w-full'>
+        Wishlist
         </NavLink>
 
    
