@@ -5,3 +5,10 @@
 a.active hr{
     display: block;
 }
+
+/* #content {
+    filter: none !important; 
+    -webkit-filter: none !important;
+    
+  }
+   */

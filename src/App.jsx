@@ -21,8 +21,10 @@ export default function App() {
   return (
     <div>
       <ToastContainer/>
-      <Navbar></Navbar>
-      <Routes>
+    
+       <Navbar></Navbar>
+       <div id="main-content">
+      <Routes >
         <Route element={<Home/>} path="/" />
         <Route element={<Collection/>} path="/collection"/>
         <Route element={<Contact/>} path="/contact"/>
@@ -36,6 +38,7 @@ export default function App() {
         <Route element ={<Wishlist/>} path="/wishlist"/>
       </Routes>
       <Footer/>
+      </div>
     </div>
   )
 }

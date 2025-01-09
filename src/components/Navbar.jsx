@@ -30,6 +30,38 @@ setCart(false)
 }
 ,[location])
 
+useEffect(() => {
+  const mainContent = document.getElementById("main-content");
+  const navlist = document.getElementById('nav-list')
+  const imagelist = document.getElementById('image-list')
+  const content = document.getElementById("content");
+
+  if (mainContent && content) {
+    if (cart) {
+      navlist.style.filter = 'blur(3px)'
+      imagelist.style.filter = 'blur(3px)'
+      mainContent.style.filter = "blur(3px)"; // Apply blur to main content
+      content.style.filter = "none"; // Remove blur from content
+    } else {
+      navlist.style.filter = 'none'
+      imagelist.style.filter = 'none'
+      mainContent.style.filter = "none"; // Remove blur when cart is closed
+      content.style.filter = "none"; // Ensure content is not blurred
+    }
+  }
+
+  return () => {
+
+    if (mainContent && content) {
+      navlist.style.filter = 'none'
+      imagelist.style.filter = 'none'
+      mainContent.style.filter = "none"; // Cleanup on unmount
+      content.style.filter = "none"; // Ensure content is not blurred
+    }
+  };
+}, [cart]);
+
+
 const handle_search =(query="")=>{
   event.preventDefault()
   const filtered = products.filter(product=>product.name.toLowerCase().includes(query.toLowerCase()))
@@ -68,9 +100,10 @@ useEffect(()=>{
 
 
   return (
-    <div className=' flex items-center justify-between py-5 mx-2 sm:mx-10 font-medium'>
-      <Link to='/'><img src={logo} alt="" className='w-36' /></Link>
-      <ul className='hidden sm:flex text-gray-700 gap-5 text-sm'>
+    <div className=' flex items-center justify-between py-5 mx-2 sm:mx-10 font-medium' >
+      
+      <Link id='image-list' to='/'><img src={logo} alt="" className='w-36' /></Link>
+      <ul id='nav-list' className='hidden sm:flex text-gray-700 gap-5 text-sm' >
 
         <NavLink to='/' className= 'flex flex-col items-center gap-1'>
         <p>Home</p>
@@ -100,7 +133,7 @@ useEffect(()=>{
         </NavLink>
 
       </ul>
-
+      
 <div className='flex gap-3'>
 
     <div className='relative'>
@@ -185,7 +218,7 @@ useEffect(()=>{
 
 {/* Cart Side */}
 
-<div
+<div id='content'
   className={`fixed z-[99]  top-0 right-0 bottom-0 bg-gray-100 overflow-auto transition-all duration-300 ease-in-out ${
     cart ? 'w-full md:w-[500px]  p-6' : 'w-0'
   }`}

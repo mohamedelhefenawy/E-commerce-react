@@ -3,7 +3,7 @@ import photo from '../assets/frontend_assets/p_img2_1.png'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import { ArrowCircleLeft, ArrowCircleRight } from 'phosphor-react';
+// import { ArrowCircleLeft, ArrowCircleRight } from 'phosphor-react';
 import { useRef } from 'react';
 
 
