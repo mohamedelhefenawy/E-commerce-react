@@ -2,11 +2,13 @@ import { useContext, useState } from 'react';
 import { ShopContext } from '../context/Shopcontext';
 import Title from '../components/Title';
 import { Heart } from 'phosphor-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Wishlist() {
   const [sizes, setSizes] = useState({}); // Object to track sizes per product
   const [clicked, setClick] = useState(false);
   const { wishlist, addtocart, addtowishlist, click } = useContext(ShopContext);
+  const navigate = useNavigate()
 
   const handleSizeSelect = (productId, sizeOption) => {
     setSizes((prev) => ({ ...prev, [productId]: sizeOption }));
@@ -23,8 +25,10 @@ export default function Wishlist() {
           <p>Your wishlist is currently empty.</p>
         </div>
       ) : (
+       
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {wishlist.map((item) => (
+         
             <div
               key={item._id}
               className="border border-gray-200 rounded-lg shadow-sm hover:shadow-lg transition-shadow p-4"
@@ -32,7 +36,8 @@ export default function Wishlist() {
               <img
                 src={item.image[0]}
                 alt={item.name}
-                className="w-full md:w-[50vw] object-cover rounded-md"
+                className="w-full md:w-[50vw] object-cover rounded-md cursor-pointer"
+                onClick={()=>navigate(`/product/${item._id}`)}
               />
               <div className="mt-4">
                 <h3 className="text-lg font-semibold text-gray-800">
@@ -79,6 +84,7 @@ export default function Wishlist() {
                 </button>
               </div>
             </div>
+            
           ))}
         </div>
       )}
