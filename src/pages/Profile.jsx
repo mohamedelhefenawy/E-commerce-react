@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Title from "../components/Title";
 import { MapPin, ShoppingCart, UserCircle, X } from "phosphor-react";
+import { ShopContext } from "../context/Shopcontext";
 
 export default function Profile() {
     const [current , setCurrent] = useState('personal')
     const [visible,setVisible] = useState(false)
+    const {products , currency} = useContext(ShopContext)
     
 
   return (
@@ -50,7 +52,30 @@ export default function Profile() {
   {/* Main Content Section */}
   <div className="w-full lg:w-[70%] bg-white rounded-lg shadow-md p-6">
     {/* Dynamic Content based on selection */}
-    {current === 'order' && <p className="text-gray-600">No Orders yet</p>}
+    {current === 'order' &&  <div className=" w-full h-[400px] overflow-auto" >
+        {products.slice(1,10).map((product,index)=>
+        <div key={index} className='flex  gap-4 py-4 border-b text-gray-700 flex-col md:flex-row justify-center md:justify-between items-center '>
+          
+          <img src={product.image[0]} alt="" className='rounded w-16 sm:w-20' />
+          <div className='self-start lg:w-[30%] w-[100%] '>
+            <p>{product.name}</p>
+            <div className='flex items-start my-2 gap-4'>
+              <p>{currency}{product.price}</p>
+              <p>Quantity: 1</p>
+              <p>Size: M</p>
+            </div>
+           
+            
+          </div>
+          
+          <div className='flex gap-2 items-center lg:w-[30%] w-[100%]'>
+              <p className='h-1.5 w-1.5 rounded-full bg-green-600'></p>
+              <p>Ready To Ship</p>
+            </div>
+
+
+        </div>)}
+      </div>}
     {current === 'location' &&  
     <div className="flex flex-col gap-2" >
     <p className="text-gray-600">No Location Saved</p>

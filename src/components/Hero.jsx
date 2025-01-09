@@ -42,7 +42,7 @@ export default function Hero() {
 
   return (
 
-    <div  className="slider-container w-[80%] mx-auto mt-10 border-2 border-gray-700 relative">
+    <div  className="slider-container w-[90%] mx-auto mt-10  relative">
 
       {/* Arrow left */}
 

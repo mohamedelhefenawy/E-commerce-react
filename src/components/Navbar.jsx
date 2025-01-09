@@ -165,10 +165,10 @@ useEffect(()=>{
 
   <div className='relative'>
   <User size={35}  className='cursor-pointer text-gray-700 hover:text-black ease duration-300' onClick={()=>{(setUser(!user));setSearch(false)}} />
- {user&&<div className='z-[99] absolute bg-gray-400 text-white w-[100px] h-[120px] rounded text-center top-[40px] right-[5px] flex flex-col justify-evenly'>
-  <p className='cursor-pointer hover:text-gray-800 ease duration-300' onClick={()=>navigate('/profile')}>Profile</p>
-  <p className='cursor-pointer hover:text-gray-800 ease duration-300' onClick={()=>navigate('/order')}>Orders</p>
-  <p className='cursor-pointer hover:text-gray-800 ease duration-300' onClick={()=>navigate('/login')}>Logout</p>
+ {user&&<div className='z-[99] absolute bg-white shadow-2xl text-black w-[100px] h-[120px] rounded text-center top-[40px] right-[5px] flex flex-col justify-evenly'>
+  <p className='cursor-pointer hover:text-red-400 ease duration-300' onClick={()=>navigate('/profile')}>Profile</p>
+  <p className='cursor-pointer hover:text-red-400 ease duration-300' onClick={()=>navigate('/order')}>Orders</p>
+  <p className='cursor-pointer hover:text-red-400 ease duration-300' onClick={()=>navigate('/login')}>Logout</p>
  </div>}
  </div>
 
@@ -184,9 +184,10 @@ useEffect(()=>{
 </div>
 
 {/* Cart Side */}
+
 <div
-  className={`fixed z-[99] top-0 right-0 bottom-0 bg-gray-100 overflow-auto transition-all duration-300 ease-in-out ${
-    cart ? 'w-full md:w-[60%] lg:w-[50%] p-6' : 'w-0'
+  className={`fixed z-[99]  top-0 right-0 bottom-0 bg-gray-100 overflow-auto transition-all duration-300 ease-in-out ${
+    cart ? 'w-full md:w-[500px]  p-6' : 'w-0'
   }`}
 >
   {/* Close Button */}
@@ -207,7 +208,7 @@ useEffect(()=>{
         return (
           <div
             key={index}
-            className="flex flex-col gap-3 md:gap-0 md:flex-row mt-6 justify-between items-center bg-white shadow-md rounded-lg p-4 hover:bg-gray-200 transition duration-300 ease-in-out"
+            className="flex flex-col gap-3 md:gap-0  md:flex-row mt-6 justify-between items-center bg-white shadow-md rounded-lg p-4 hover:bg-gray-200 transition duration-300 ease-in-out"
           >
             {/* Product Info */}
             <div className="flex gap-4 items-center">
@@ -260,7 +261,7 @@ useEffect(()=>{
                 src={del}
                 onClick={() => updated_quantity(items.id, items.size, 0)}
                 alt="Delete item"
-                className="w-6 h-6 cursor-pointer hover:scale-110 transition"
+                className="w-6 h-6 cursor-pointer hover:scale-110 transition "
                 title="Remove Item"
               />
             </div>
@@ -280,6 +281,7 @@ useEffect(()=>{
     </div>
   </div>
 </div>
+
 
 
 
