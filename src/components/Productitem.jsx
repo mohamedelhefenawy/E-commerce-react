@@ -13,7 +13,7 @@ export default function Productitem({id , image , price , name}) {
       
       <div className='overflow-hidden relative'>
       <Link  to = {`/product/${id}`}>
-            <img src= {image[0]} alt=""  className='hover:scale-110 transition ease-in-out cursor-pointer'/>
+            <img src= {image[0]} loading='lazy' alt=""  className='hover:scale-110 transition ease-in-out cursor-pointer'/>
             </Link>
             <Heart size={24} weight="fill"  className ={`absolute top-2 right-1 cursor-pointer ${currency.click[id] ?'text-red-400' : ''}`} onClick={()=>{setClick(currency[id]);currency.addtowishlist(id)}} />
 

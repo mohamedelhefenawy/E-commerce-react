@@ -220,7 +220,7 @@ useEffect(()=>{
 
 <div id='content'
   className={`fixed z-[99]  top-0 right-0 bottom-0 bg-gray-100 overflow-auto transition-all duration-300 ease-in-out ${
-    cart ? 'w-full md:w-[500px]  p-6' : 'w-0'
+    cart ? 'w-full md:w-[550px]  p-6' : 'w-0'
   }`}
 >
   {/* Close Button */}

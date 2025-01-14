@@ -23,7 +23,7 @@ export default function Relatedproduct({ category , subCategory}) {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {filtered_product.map((item,index)=>(
             <div key={index} className="border p-4 flex flex-col items-center rounded">
-                <img src={item.image[0]} alt=""  className="w-40 h-40 object-cover rounded-xl"/>
+                <img src={item.image[0]} loading="lazy" alt=""  className="w-40 h-40 object-cover rounded-xl"/>
                 <h4 className="font-medium text-lg mt-2">{item.name}</h4>
                 <p className="text-gray-600 self-start">
               {products.currency}

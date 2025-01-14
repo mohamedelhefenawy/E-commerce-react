@@ -42,13 +42,14 @@ export default function Product() {
                 <img
                   src={item}
                   key={index}
+                  loading='lazy'
                   className="  w-[16vw] sx:w-[50vw] ms:w-[30vw]  cursor-pointer object-cover cursor-pointer border border-gray-200 rounded-md hover:border-gray-500"
                   onClick={() => setImage(item)}
                 />
               ))}
           </div>
 
-          <img src={image} alt="" className="w-[70vw] object-cover rounded-lg shadow-lg" />
+          <img src={image} loading='lazy' alt="" className="w-[70vw] object-cover rounded-lg shadow-lg" />
         </div>
 
         <div className="flex flex-col gap-5">
@@ -58,9 +59,9 @@ export default function Product() {
               {Array(4)
                 .fill(null)
                 .map((_, index) => (
-                  <img src={star} key={index} className="w-4" />
+                  <img src={star} loading='lazy' key={index} className="w-4" />
                 ))}
-              <img src={non_star} alt="" className="w-4" />
+              <img src={non_star} alt="" loading='lazy' className="w-4" />
             </div>
             
             <p className="ml-2 font-medium">(122)</p>
