@@ -17,6 +17,7 @@ i18n
           get_in_touch: "Get IN Touch",
           phone: "01272808556",
           email: "melhefnawy718@gmail.com",
+          "Emaile":"Email",
           copyright: "Copyright 2024",
           all_rights: "All Rights Reserved",
           lorem: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste debitis facere earum sint commodi, fugiat nesciunt iure sequi consequatur repudiandae enim cumque voluptatibus dicta perspiciatis consectetur labore, natus repellat dolorum.",
@@ -70,8 +71,21 @@ i18n
   "typeWinterwear": "Winterwear",
   "My":"My",
   "wishlistEmpty": "Your wishlist is currently empty."
-  ,  "addToCart": "Add to Cart"
-
+  ,  "addToCart": "Add to Cart",
+  "CotanctTitle1":"Contact",
+  "ContactTitle2":'Us',
+  "ourStore": "Our Store",
+  "storeAddress": "54709 Willms Station\nSuite 350, Washington, USA",
+  "contactUs": "Contact Us",
+  "tel": "Tel:",
+  "careers": "Careers at Forever",
+  "careersDesc": "Learn more about our teams and job openings.",
+"getInTouch": "Get IN",
+  "touch": "Touch",
+  "namePlaceholder": "Name",
+  "phonePlaceholder": "Phone",
+  "commentPlaceholder": "Text Your Comment...",
+  "send": "Send"
   
 
 
@@ -90,6 +104,7 @@ i18n
           get_in_touch: "تواصل معنا",
           phone: "٠١٢٧٢٨٠٨٥٥٦",
           email: "melhefnawy718@gmail.com",
+          "Emaile":"البريد الالكتروني",
           copyright: "حقوق النشر ٢٠٢٤",
           all_rights: "جميع الحقوق محفوظة",
           lorem: "لوريم إيبسوم دولور سيت أميت، كونسيكتيتور أديبيسينغ إيليت. إيستي ديبيتيس فاكر إيروم سنت كومودي، فوجيهت نيسكنت جوري سيكوي غونسيكتاتور ريبدودياندي إينيم كومك فولوبتاتيبيوس ديكتا بيرسبيكياتيس كونسيكتاتور لابور، ناتوس ريبيليات دولوروم.",
@@ -143,7 +158,21 @@ i18n
   "typeWinterwear": "ملابس الشتاء",
   "My":"قائمتي",
   "wishlistEmpty": "قائمة الرغبات الخاصة بك فارغة حالياً.",
-  "addToCart": "أضف إلى السلة"
+  "addToCart": "أضف إلى السلة",
+  "CotanctTitle1":"تواصل",
+  "ContactTitle2":'معنا',
+  "ourStore": "متجرنا",
+  "storeAddress": "54709 محطة ويلمز\nالجناح 350، واشنطن، الولايات المتحدة",
+  "contactUs": "اتصل بنا",
+  "tel": "الهاتف:",
+  "careers": "الوظائف في Forever",
+  "careersDesc": "تعرف على فرقنا وفرص العمل المتاحة.",
+  "getInTouch": "تواصل",
+  "touch": "معنا",
+  "namePlaceholder": "الاسم",
+  "phonePlaceholder": "الهاتف",
+  "commentPlaceholder": "اكتب تعليقك...",
+  "send": "إرسال"
 
 
             
