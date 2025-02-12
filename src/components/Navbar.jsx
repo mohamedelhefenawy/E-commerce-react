@@ -1,11 +1,12 @@
 import  { useContext, useEffect, useState } from 'react'
 import logo from '../assets/admin_assets/logo.png'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
-import { ArrowLeft, Bag, List, MagnifyingGlass, User, X } from 'phosphor-react';
+import { ArrowLeft, Bag, List, MagnifyingGlass, Translate, User, X } from 'phosphor-react';
 import { ShopContext } from '../context/Shopcontext';
 // import Carttotal from './Carttotal';
 import del from '../assets/frontend_assets/bin_icon.png'
-
+import { useTranslation } from 'react-i18next';
+import '../i18n'; // Import i18n setup
 
 export default function Navbar() {
 const [user ,setUser] = useState(false)
@@ -73,6 +74,7 @@ const handle_search =(query="")=>{
 
 
 
+const { t, i18n } = useTranslation();
 
 
 useEffect(()=>{
@@ -103,32 +105,32 @@ useEffect(()=>{
     <div className=' flex items-center justify-between py-5 mx-2 sm:mx-10 font-medium' >
       
       <Link id='image-list' to='/'><img src={logo} alt="" className='w-36' /></Link>
-      <ul id='nav-list' className='hidden sm:flex text-gray-700 gap-5 text-sm' >
+      <ul id='nav-list' className='hidden sm:flex text-gray-700 gap-5 text-sm' dir={i18n.language==='ar'?'rtl':'ltr'} >
 
         <NavLink to='/' className= 'flex flex-col items-center gap-1'>
-        <p>Home</p>
+        <p>{t("Home")}</p>
         <hr className='w-2/4 font-bold bg-gray-700 h-[2px] hidden' />
         </NavLink>
 
         <NavLink to='/collection' className= 'flex flex-col items-center gap-1'>
-        <p>Collection</p>
+        <p>{t("Collection")}</p>
         <hr className='w-2/4 font-bold bg-gray-700 h-[2px] hidden' />
         </NavLink>
 
         <NavLink to='/about' className= 'flex flex-col items-center gap-1'>
-        <p>About</p>
+        <p>{t("About")}</p>
         <hr className='w-2/4 font-bold bg-gray-700 h-[2px] hidden' />
         </NavLink>
 
         <NavLink to='/wishlist' className= 'flex flex-col items-center gap-1'>
-        <p>Wishlist</p>
+        <p>{t("Wishlist")}</p>
         <hr className='w-2/4 font-bold bg-gray-700 h-[2px] hidden' />
         </NavLink>
 
    
 
         <NavLink to='/contact' className= 'flex flex-col items-center gap-1'>
-        <p>Contact</p>
+        <p>{t("Contact")}</p>
         <hr className='w-2/4 font-bold bg-gray-700 h-[2px] hidden' />
         </NavLink>
 
@@ -148,7 +150,7 @@ useEffect(()=>{
       />
       <input
         type="text"
-        placeholder="Search"
+        placeholder={t("Search")}
         value={value}
         onChange={(e) => {
           setValue(e.target.value);
@@ -183,7 +185,7 @@ useEffect(()=>{
               </Link>
             ))
           ) : (
-            <p className="text-gray-600 text-2xl">No Results</p>
+            <p className="text-gray-600 text-2xl">{t("No Results")}</p>
           )}
         </div>
       )}
@@ -193,15 +195,16 @@ useEffect(()=>{
 
   </div>
 
-
+  <Translate size={35}  className="fixed bottom-5 right-10 md:relative  md:bottom-0 md:right-0 bg-gray-300 md:bg-transparent w-[50px] z-50 rounded-full  cursor-pointer text-gray-700 hover:text-black ease duration-300"
+        onClick={() => i18n.changeLanguage(i18n.language==='en'?'ar':'en')} />
   
 
   <div className='relative'>
   <User size={35}  className='cursor-pointer text-gray-700 hover:text-black ease duration-300' onClick={()=>{(setUser(!user));setSearch(false)}} />
  {user&&<div className='z-[99] absolute bg-white shadow-2xl text-black w-[100px] h-[120px] rounded text-center top-[40px] right-[5px] flex flex-col justify-evenly'>
-  <p className='cursor-pointer hover:text-red-400 ease duration-300' onClick={()=>navigate('/profile')}>Profile</p>
-  <p className='cursor-pointer hover:text-red-400 ease duration-300' onClick={()=>navigate('/order')}>Orders</p>
-  <p className='cursor-pointer hover:text-red-400 ease duration-300' onClick={()=>navigate('/login')}>Logout</p>
+  <p className='cursor-pointer hover:text-red-400 ease duration-300' onClick={()=>navigate('/profile')}>{t("Profile")}</p>
+  <p className='cursor-pointer hover:text-red-400 ease duration-300' onClick={()=>navigate('/order')}>{t("Orders")}</p>
+  <p className='cursor-pointer hover:text-red-400 ease duration-300' onClick={()=>navigate('/login')}>{t("Logout")}</p>
  </div>}
  </div>
 
@@ -309,7 +312,7 @@ useEffect(()=>{
         onClick={() => navigate('/place-order')}
         className="w-full bg-red-500 text-white rounded-lg py-4 font-semibold hover:bg-red-600 transition duration-300 ease"
       >
-        Go To Checkout | {currency}{get_total_amount()}
+        {t("Go To Checkout")}| {currency}{get_total_amount()}
       </button>
     </div>
   </div>
@@ -322,37 +325,37 @@ useEffect(()=>{
 
 {/* small screen */}
 
-<div className={`fixed z-[99] top-0 right-0 bottom-0 bg-white overflow-hidden transition-all  ${visible? 'w-full max-h-screen' :'w-0' } `} >
+<div  className={`fixed z-[99] top-0 right-0 bottom-0 bg-white overflow-hidden transition-all  ${visible? 'w-full max-h-screen' :'w-0' } `} >
 
 
 <div className='flex gap-3 cursor-pointer mt-5 ml-2 ' onClick={()=> setVisible(false)}>
 <ArrowLeft size={28} className='text-gray-700' />
-<p className='text-gray-700 '>Back</p>
+<p className='text-gray-700 '>{t("Back")}</p>
 
 </div>
 
 <div className='flex flex-col  items-start gap-3  mt-2 text-gray-700 '>
 <NavLink onClick={()=> setVisible(false)} to='/' className= 'py-2 pl-6 border-b-2 w-full'>
-        Home
+        {t("Home")}
         
         </NavLink>
 
         <NavLink onClick={()=> setVisible(false)} to='/collection' className= 'py-2 pl-6 border-b-2 w-full'>
-        Collection
+        {t("Collection")}
         </NavLink>
 
         <NavLink onClick={()=> setVisible(false)} to='/about' className= 'py-2 pl-6 border-b-2 w-full'>
-        About
+        {t("About")}
         </NavLink>
 
         <NavLink onClick={()=> setVisible(false)} to='/wishlist' className= 'py-2 pl-6 border-b-2 w-full'>
-        Wishlist
+        {t("Wishlist")}
         </NavLink>
 
    
 
         <NavLink onClick={()=> setVisible(false)} to='/contact' className= 'py-2 pl-6 border-b-2 w-full'>
-        Contact
+        {t("Contact")}
         </NavLink>
         </div>
     </div>

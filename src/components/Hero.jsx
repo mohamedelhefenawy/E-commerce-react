@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 // import { ArrowCircleLeft, ArrowCircleRight } from 'phosphor-react';
 import { useRef } from 'react';
-
+import { useTranslation } from 'react-i18next';
 
 
 const data = [{
@@ -23,14 +23,18 @@ const data = [{
 
 
 const settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 1500,
-  arrows: false
+  dots: false, 
+  infinite: true, 
+  speed: 5000, // Ensures smooth scrolling
+  slidesToShow: 1, 
+  slidesToScroll: 1, 
+  autoplay: true, 
+  autoplaySpeed: 0, // Ensures continuous scrolling without delay
+  cssEase: "linear", // Creates a seamless transition
+  arrows: false, 
+  pauseOnHover: false, // Prevent pausing when hovering
+  draggable: false, // Prevents user drag interruptions
+  swipe: false, // Disables swipe gestures to keep continuous movement
 };
 
 
@@ -39,6 +43,7 @@ const settings = {
 export default function Hero() {
 
   const inputref = useRef(null)
+  const {t} = useTranslation()
 
   return (
 
@@ -63,11 +68,11 @@ export default function Hero() {
            <div className='w-fit flex flex-col gap-5 my-5'>
            <div className='flex items-center gap-1 '>
                <hr className='bg-gray-600 h-[3px] w-[40px]' />
-               <h3>{item.title}</h3>
+               <h3>{t(`${item.title}`)}</h3>
            </div>
-           <h1 className='font-bold text-4xl leading-relaxed'>{item.h1}</h1>
+           <h1 className='font-bold text-4xl leading-relaxed'>{t(`${item.h1}`)}</h1>
            <div className='flex items-center gap-1'>
-           <h3>{item.h2}</h3>
+           <h3>{t(`${item.h2}`)}</h3>
            <hr className='bg-gray-600 h-[3px] w-[40px]' />
            </div>
            </div>

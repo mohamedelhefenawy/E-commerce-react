@@ -3,7 +3,7 @@ import { ShopContext } from "../context/Shopcontext";
 import Title from "../components/Title";
 import Productitem from "../components/Productitem";
 import { ArrowRight } from "phosphor-react";
-
+import { useTranslation } from "react-i18next";
 export default function Collection() {
   const product = useContext(ShopContext);
   const [show, setShow] = useState(true);
@@ -13,6 +13,7 @@ export default function Collection() {
   const [sorttype, setSorttype] = useState("relevant");
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 16;
+  const {t} = useTranslation()
 
   const toggle_category = (e) => {
     if (category.includes(e.target.value)) {
@@ -91,34 +92,46 @@ export default function Collection() {
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-5 ">
             <div className="flex gap-4 w-fit" onClick={() => setShow(!show)}>
-              <p className="font-bold text-2xl cursor-pointer">FILTERS</p>
+              <p className="font-bold text-2xl cursor-pointer">{t("FILTERS")}</p>
               <ArrowRight size={32} className={`${show ? "" : "rotate-90"} transition-all lg:hidden`} />
             </div>
             {show && (
               <div className="border w-fit py-4 pr-[200px] px-4">
-                <p className="font-semibold mb-3 text-2xl">Category</p>
-                <p className="flex gap-2">
-                  <input type="checkbox" value={"Men"} className="w-3" onClick={toggle_category} /> Men
-                </p>
-                <p className="flex gap-2">
-                  <input type="checkbox" value={"Women"} className="w-3" onClick={toggle_category} /> Women
-                </p>
-                <p className="flex gap-2">
-                  <input type="checkbox" value={"Kids"} className="w-3" onClick={toggle_category} /> Kids
-                </p>
+               <p className="font-semibold mb-3 text-2xl">{t("categoryTitle")}</p>
+
+              <p className="flex gap-2">
+                <input type="checkbox" value="Men" className="w-3" onClick={toggle_category} /> 
+                {t("categoryMen")}
+              </p>
+
+              <p className="flex gap-2">
+                <input type="checkbox" value="Women" className="w-3" onClick={toggle_category} /> 
+                {t("categoryWomen")}
+              </p>
+
+              <p className="flex gap-2">
+                <input type="checkbox" value="Kids" className="w-3" onClick={toggle_category} /> 
+                {t("categoryKids")}
+              </p>
               </div>
             )}
             {show && (
               <div className="border w-fit py-4 pr-[200px] px-4">
-                <p className="font-semibold mb-3 text-2xl">Type</p>
+                <p className="font-semibold mb-3 text-2xl">{t("typeTitle")}</p>
+
                 <p className="flex gap-2">
-                  <input type="checkbox" value={"Topwear"} className="w-3" onClick={toggle_type} /> Topwear
+                  <input type="checkbox" value="Topwear" className="w-3" onClick={toggle_type} />
+                  {t("typeTopwear")}
                 </p>
+
                 <p className="flex gap-2">
-                  <input type="checkbox" value={"Bottomwear"} className="w-3" onClick={toggle_type} /> Bottomwear
+                  <input type="checkbox" value="Bottomwear" className="w-3" onClick={toggle_type} />
+                  {t("typeBottomwear")}
                 </p>
+
                 <p className="flex gap-2">
-                  <input type="checkbox" value={"Winterwear"} className="w-3" onClick={toggle_type} /> Winterwear
+                  <input type="checkbox" value="Winterwear" className="w-3" onClick={toggle_type} />
+                  {t("typeWinterwear")}
                 </p>
               </div>
             )}
@@ -130,15 +143,15 @@ export default function Collection() {
               className="border-2 text-black text-sm px-2 rounded lg:hidden"
               onChange={(e) => setSorttype(e.target.value)}
             >
-              <option value="relevant">Sort by: Relevant</option>
-              <option value="low-high">Sort by: Low to High</option>
-              <option value="high-low">Sort by: High to Low</option>
+            <option value="relevant">{t("sortRelevant")}</option>
+            <option value="low-high">{t("sortLowHigh")}</option>
+            <option value="high-low">{t("sortHighLow")}</option>
             </select>
           </div>
         </div>
         {/* Center */}
         <div className="flex-1 mx-2 my-4 lg:my-0">
-          <Title text1={"All"} text2={"Collection"} />
+          <Title text1={t("All")} text2={t("Collection")} />
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 my-4">
             {currentProducts.map((item, index) => (
               <Productitem key={index} name={item.name} id={item._id} price={item.price} image={item.image} />
@@ -167,9 +180,9 @@ export default function Collection() {
             className="border-2 text-black text-sm px-2 rounded hidden lg:block"
             onChange={(e) => setSorttype(e.target.value)}
           >
-            <option value="relevant">Sort by: Relevant</option>
-            <option value="low-high">Sort by: Low to High</option>
-            <option value="high-low">Sort by: High to Low</option>
+           <option value="relevant">{t("sortRelevant")}</option>
+            <option value="low-high">{t("sortLowHigh")}</option>
+            <option value="high-low">{t("sortHighLow")}</option>
           </select>
         </div>
       </div>

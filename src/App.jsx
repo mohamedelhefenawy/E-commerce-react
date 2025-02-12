@@ -5,7 +5,6 @@ import Footer from "./components/Footer";
 import { ToastContainer } from "react-toastify";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-
 // Regular imports
 import Home from "./pages/Home";
 import Collection from "./pages/Collection";

@@ -2,9 +2,10 @@ import { useContext, useState } from 'react';
 import { ShopContext } from '../context/Shopcontext';
 import Title from '../components/Title';
 import { Heart } from 'phosphor-react';
-import { Link, useNavigate } from 'react-router-dom';
-
+import {  useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 export default function Wishlist() {
+  const {t} = useTranslation()
   const [sizes, setSizes] = useState({}); // Object to track sizes per product
   const [clicked, setClick] = useState(false);
   const { wishlist, addtocart, addtowishlist, click } = useContext(ShopContext);
@@ -17,12 +18,12 @@ export default function Wishlist() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="text-center mb-8">
-        <Title text1="My" text2="Wishlist" />
+        <Title text1={t("My")} text2={t("Wishlist")} />
       </div>
 
       {wishlist.length === 0 ? (
         <div className="text-center text-gray-600 text-lg">
-          <p>Your wishlist is currently empty.</p>
+          <p>{t("wishlistEmpty")}</p>
         </div>
       ) : (
        
@@ -80,7 +81,7 @@ export default function Wishlist() {
                   className="w-full mt-4 bg-red-500 text-white rounded-lg py-2 px-4 font-semibold hover:bg-red-600 transition duration-300 ease"
                   onClick={() => addtocart(item._id, sizes[item._id])}
                 >
-                  Add to Cart
+                  {t("addToCart")}
                 </button>
               </div>
             </div>
