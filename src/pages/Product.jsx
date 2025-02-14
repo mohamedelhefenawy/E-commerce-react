@@ -122,7 +122,7 @@ export default function Product() {
         
         <div className='mt-10'>
           {describe?(<p className='text-gray-600 text-sm '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, quidem error perferendis enim magnam vero delectus iusto nesciunt quod magni totam aperiam, iste adipisci eaque reprehenderit alias aut, inventore unde!</p>):
-          (<p className='text-gray-600 text-sm '>This Product is very good and it is made from cotton 100%</p>)}
+          (<p className='text-gray-600 text-sm '>{t("cotton")}</p>)}
         </div>
       </div>
 
