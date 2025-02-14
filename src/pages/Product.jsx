@@ -5,7 +5,7 @@ import star from '../assets/frontend_assets/star_icon.png';
 import non_star from '../assets/frontend_assets/star_dull_icon.png';
 import Relatedproduct from '../components/Relatedproduct';
 import { Heart } from 'phosphor-react';
-
+import { useTranslation } from 'react-i18next';
 export default function Product() {
   const { id } = useParams();
   const [productData, setProductData] = useState({});
@@ -15,6 +15,7 @@ export default function Product() {
   const [describe ,setDescribe] = useState(false)
   const [click , setClick]=useState(false)
   console.log(products.click)
+  const {t,i18n} = useTranslation()
 
   const fetch_Data = async () => {
     
@@ -43,7 +44,7 @@ export default function Product() {
                   src={item}
                   key={index}
                   loading='lazy'
-                  className="  w-[16vw] sx:w-[50vw] ms:w-[30vw]  cursor-pointer object-cover cursor-pointer border border-gray-200 rounded-md hover:border-gray-500"
+                  className="  w-[16vw] sx:w-[50vw] ms:w-[30vw]  object-cover cursor-pointer border border-gray-200 rounded-md hover:border-gray-500"
                   onClick={() => setImage(item)}
                 />
               ))}
@@ -73,7 +74,7 @@ export default function Product() {
             {products.currency}
             {productData.price}
           </p>
-          <p className="text-gray-600 w-3/4 text-sm">{productData.description}</p>
+          <p className="text-gray-600 w-3/4 text-sm">{t("description")}</p>
           <Heart size={24} weight="fill" className ={` cursor-pointer ${products.click[productData._id]?'text-red-400' : ''}`} onClick={()=>{setClick(products.click[productData._id]);products.addtowishlist(productData._id)}} />
          {/* Select Size */}
       <div className="flex flex-col gap-2">
@@ -98,15 +99,15 @@ export default function Product() {
         onClick={() => products.addtocart(productData._id, size)}
         className="bg-black text-white px-8 py-3 rounded-lg shadow "
       >
-        Add To Cart
+        {t("addToCart")}
       </button>
 
       {/*  */}
       <hr className="my-5 border-gray-300" />
       <div className="text-gray-600 text-sm space-y-2">
-        <p>100% original product</p>
-        <p>Cash on delivery available</p>
-        <p>Easy return and exchange within 7 days</p>
+        <p>{t("100% original product")}</p>
+        <p>{t("Cash on delivery available")}</p>
+        <p>{t("Easy return and exchange within 7 days")}</p>
       </div>
     </div>
   </div>
@@ -114,8 +115,8 @@ export default function Product() {
       {/* Description and Reviews */}
       <div className='mt-20 '>
         <div className='flex gap-1'>
-          <button className={`border rounded ${describe?'text-black':'text-gray-600'} px-5 py-3 text-sm`} onClick={()=>setDescribe(true)}>Description</button>
-          <button className={`border rounded ${describe ? 'text-gray-600' :'text-black'} px-5 py-3 text-sm`} onClick={()=>setDescribe(false)}>Reviews (122)</button>
+          <button className={`border rounded ${describe?'text-black':'text-gray-600'} px-5 py-3 text-sm`} onClick={()=>setDescribe(true)}>{t('DescriptionTab')}</button>
+          <button className={`border rounded ${describe ? 'text-gray-600' :'text-black'} px-5 py-3 text-sm`} onClick={()=>setDescribe(false)}>{t('ReviewsTab')}</button>
         </div>
  
         
@@ -129,14 +130,14 @@ export default function Product() {
       {!describe && (
     <form className="my-10 flex flex-col gap-4">
       <textarea
-        placeholder="Input Your Review"
+        placeholder={`${t('ReviewPlaceholder')}`}
         className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent resize-none"
       ></textarea>
       <button
         type="submit"
         className="w-[100px] border border-black px-5 py-3 rounded-lg text-sm font-medium bg-black text-white"
       >
-        Send
+        {t('Send')}
       </button>
     </form>
   )}

@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react"
 import { ShopContext } from "../context/Shopcontext"
 import { useNavigate } from "react-router-dom"
-
+import { useTranslation } from "react-i18next"
 export default function Relatedproduct({ category , subCategory}) {
     const [filtered_product,setFilteredProduct] = useState([])
     const products = useContext(ShopContext)
     const navigate = useNavigate()
+    const {t} = useTranslation()
     useEffect(() => {
         if (products.products) {
           const categoryProducts = products.products.filter(
@@ -30,7 +31,7 @@ export default function Relatedproduct({ category , subCategory}) {
               {item.price}
             </p>
             <button className="bg-black text-white px-3 py-2 rounded mt-3" onClick={() => navigate(`/product/${item._id}`)}>
-              View Details
+              {t("viewdetails")}
             </button>
             </div>
         ))}

@@ -85,8 +85,20 @@ i18n
   "namePlaceholder": "Name",
   "phonePlaceholder": "Phone",
   "commentPlaceholder": "Text Your Comment...",
-  "send": "Send"
-  
+  "send": "Send",
+  "profile_first":"My",
+  "profile_second":"Profile",
+  "description":"A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+  "viewdetails":"View Details",
+  "Submit": "Submit",
+  "100% original product": "100% original product",
+  "Cash on delivery available": "Cash on delivery available",
+  "Easy return and exchange within 7 days": "Easy return and exchange within 7 days",
+  "DescriptionTab": "Description",
+  "ReviewsTab": "Reviews (122)",
+  "ReviewPlaceholder": "Input Your Review",
+  "Send": "Send",
+  "cotton":"This Product is very good and it is made from cotton 100%"
 
 
 
@@ -172,8 +184,20 @@ i18n
   "namePlaceholder": "الاسم",
   "phonePlaceholder": "الهاتف",
   "commentPlaceholder": "اكتب تعليقك...",
-  "send": "إرسال"
-
+  "send": "إرسال" ,
+  "profile_first":"الصفحة",
+  "profile_second":"الخاصة بي",
+  "description":"قميص خفيف الوزن، محبوك عادةً، ملائم للجسم، ذو رقبة دائرية وأكمام قصيرة، يرتدى كقميص داخلي أو ثوب خارجي.",
+  "viewdetails":"التفاصيل",
+  "Submit": "إرسال",
+      "100% original product": "منتج أصلي 100%",
+      "Cash on delivery available": "الدفع عند الاستلام متاح",
+      "Easy return and exchange within 7 days": "إرجاع واستبدال سهل خلال 7 أيام",
+      "DescriptionTab": "الوصف",
+      "ReviewsTab": "المراجعات (122)",
+      "ReviewPlaceholder": "أدخل مراجعتك",
+      "Send": "إرسال",
+      "cotton":"هذا المنتج جيد جدًا وهو مصنوع من القطن بنسبة 100%"
 
             
         }

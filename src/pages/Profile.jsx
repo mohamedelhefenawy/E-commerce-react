@@ -2,17 +2,19 @@ import { useContext, useState } from "react";
 import Title from "../components/Title";
 import { MapPin, ShoppingCart, UserCircle, X } from "phosphor-react";
 import { ShopContext } from "../context/Shopcontext";
+import { useTranslation } from "react-i18next";
 
 export default function Profile() {
     const [current , setCurrent] = useState('personal')
     const [visible,setVisible] = useState(false)
     const {products , currency} = useContext(ShopContext)
+    const{t} = useTranslation()
     
 
   return (
     <div>
         <div className="text-center my-5">
-            <Title text1={'My'} text2={'Profile'}/>
+            <Title text1={t("profile_first")} text2={t("profile_second")}/>
         </div>
 
         <div className="flex w-[80%] mx-auto flex-col lg:flex-row my-10 gap-6">
